@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Veículos</h2>
+    <a href="/veiculos/novo/" class="btn btn-primary">+ Novo Veículo</a>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Ano</th>
+            <th>Preço</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for veiculo in veiculos %}
+        <tr>
+            <td>{{ veiculo.marca }}</td>
+            <td>{{ veiculo.modelo }}</td>
+            <td>{{ veiculo.ano }}</td>
+            <td>R$ {{ veiculo.preco }}</td>
+            <td>
+                {% if veiculo.disponivel %}
+                    <span class="badge bg-success">Disponível</span>
+                {% else %}
+                    <span class="badge bg-secondary">Vendido</span>
+                {% endif %}
+            </td>
+
+                <a href="/veiculos/editar/{{ veiculo.id }}/" class="btn btn-sm btn-warning">Editar</a>
+                <a href="/veiculos/deletar/{{ veiculo.id }}/" class="btn btn-sm btn-danger">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
