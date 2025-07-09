@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Detalhes do Funcionário{% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-header bg-info text-white">
+        <h4>Detalhes de {{ funcionario.nome }}</h4>
+    </div>
+    <div class="card-body">
+        <p><strong>Nome:</strong> {{ funcionario.nome }}</p>
+        <p><strong>Permissão:</strong> {{ funcionario.permissao }}</p>
+
+        <a href="{% url 'listar_funcionarios' %}" class="btn btn-secondary">Voltar</a>
+    </div>
+</div>
+{% endblock %}

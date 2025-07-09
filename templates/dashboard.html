@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total de Veículos</h5>
+                <p class="card-text">{{ total_veiculos }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Total de Vendas</h5>
+                <p class="card-text">{{ total_vendas }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Test-Drives Hoje</h5>
+                <p class="card-text">{{ test_drives_hoje }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
