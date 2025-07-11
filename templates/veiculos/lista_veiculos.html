@@ -29,9 +29,11 @@
                     <span class="badge bg-secondary">Vendido</span>
                 {% endif %}
             </td>
-
-                <a href="/veiculos/editar/{{ veiculo.id }}/" class="btn btn-sm btn-warning">Editar</a>
+            <td >
+                <div>
+                <a href="/veiculos/editar/{{ veiculo.id }}/" class="btn btn-sm btn-primary">Editar</a>
                 <a href="/veiculos/deletar/{{ veiculo.id }}/" class="btn btn-sm btn-danger">Excluir</a>
+            </div>
             </td>
         </tr>
         {% endfor %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Detalhes do Cliente{% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-header bg-info text-white">
+        <h4>Detalhes de {{ cliente.nome }}</h4>
+    </div>
+    <div class="card-body">
+        <p><strong>Nome:</strong> {{ cliente.nome }}</p>
+        <p><strong>CPF:</strong> {{ cliente.CPF }}</p>
+        <p><strong>Contato:</strong> {{ cliente.contato }}</p>
+
+        <a href="{% url 'listar_clientes' %}" class="btn btn-secondary">Voltar</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <div class="card-header text-black">
+                        <h2 class="mb-0 d-flex align-items-center fs-5">
+                        <i class="fas fa-user-plus me-2 fs-5"></i>
+                        {% if cliente.id %}
+                            Editar Cliente
+                        {% else %}
+                            Cadastrar Novo Cliente
+                        {% endif %}
+                        </h2>
+                    </div>
+                    <form method="POST">
+                    {% csrf_token %}
+                        {{ form.as_p }}
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-success w-50 me-2">
+                                <i class="fas fa-check"></i> Salvar
+                            </button>
+                            <a href="{% url 'listar_clientes' %}" class="btn btn-secondary w-50">
+                            <i class="fas fa-times"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
