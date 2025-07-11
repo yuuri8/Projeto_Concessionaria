@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Vendas</h2>
+    <a href="/vendas/nova/" class="btn btn-primary">+ Nova Venda</a>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Veículo</th>
+            <th>Cliente</th>
+            <th>Funcionário</th>
+            <th>Data</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for venda in vendas %}
+        <tr>
+            <td>{{ venda.veiculo }}</td>
+            <td>{{ venda.cliente }}</td>
+            <td>{{ venda.funcionario }}</td>
+            <td>{{ venda.data }}</td>
+            <td>R$ {{ venda.valor }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

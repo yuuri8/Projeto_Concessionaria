@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('veiculos/', include('veiculos.urls')),
     path('clientes/', include('clientes.urls')),
+    path('vendas/', include('vendas.urls')),
 ]
