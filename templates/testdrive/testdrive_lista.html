@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Test Drive</h2>
+    <a href="{% url 'criar_testdrive' %}" class="btn btn-primary">Agendar Test Drive</a>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr> 
+            <th>Nome</th>
+            <th class="text-end">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for testdrive in testdrive %}
+        <tr>
+            <td>{{ testdrive.cliente }}</td>
+            <td class="text-end">
+                <div>
+                    <a href="{% url 'detalhes_testdrive' testdrive.id %}" class="text-warning me-2">
+                        <i class="fas fa-eye"></i>
+                    </a>
+                    <a href="{% url 'editar_testdrive' testdrive.id %}" class="text-primary me-3">
+                        <i class="fas fa-edit"></i> 
+                    </a>
+                    <a href="{% url 'deletar_testdrive' testdrive.id %}" class="text-danger"
+                        onclick="return confirm('Tem certeza que deseja excluir este funcionário?')">
+                     <i class="fas fa-trash"></i> 
+                    </a>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
