@@ -4,21 +4,19 @@
 <!-- Font Awesome para ícones -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
-<div class="container mt-5">
+<div class="container mt-5" >
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-5">
             <div class="card shadow-lg rounded">
                 <div class="card-body">
-                    <div class="card-header text-black">
-    <h2 class="mb-0 d-flex align-items-center fs-5">
-        <i class="fas fa-user-plus me-2 fs-5"></i>
-        {% if funcionario.id %}
-            Editar Funcionário
-        {% else %}
-            Cadastrar Novo Funcionário
-        {% endif %}
-    </h2>
-</div>
+                        <h2 class="mb-0 fs-5 text-center w-100">
+                            {% if funcionario.id %}
+                                Editar Funcionário
+                            {% else %}
+                                Cadastrar Novo Funcionário
+                            {% endif %}
+                         </h2>
+                         <br>
 
                     <form method="POST">
                         {% csrf_token %}
@@ -26,7 +24,7 @@
                         <!-- Nome de usuário -->
                         <div class="mb-3">
                             <label for="usuario" class="form-label">
-                                <i class="fas fa-user me-1"></i> Usuário
+                                <i class="fa-solid fa-user me-1 text-primary"></i> Usuário
                             </label>
                             <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Nome de usuário" required>
                         </div>
@@ -34,7 +32,7 @@
                         <!-- E-mail -->
                         <div class="mb-3">
                             <label for="email" class="form-label">
-                                <i class="fas fa-envelope me-1"></i> E-mail
+                                <i class="fas fa-envelope me-1 text-primary"></i> E-mail
                             </label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
                         </div>
@@ -42,7 +40,7 @@
                         <!-- Senha -->
                         <div class="mb-3">
                             <label for="senha" class="form-label">
-                                <i class="fas fa-lock me-1"></i> Senha
+                                <i class="fas fa-lock me-1 text-primary"></i> Senha
                             </label>
                             <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required>
                         </div>
@@ -50,7 +48,7 @@
                         <!-- Permissão -->
                         <div class="mb-4">
                             <label for="permissao" class="form-label">
-                                <i class="fas fa-user-shield me-1"></i> Permissão
+                                <i class="fas fa-user-shield me-1 text-primary"></i> Permissão
                             </label>
                             <select class="form-select" id="permissao" name="permissao" required>
                                 <option value="" disabled selected>Selecione a permissão</option>
