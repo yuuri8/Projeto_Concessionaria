@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Detalhes de venda{% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-header bg-info text-white">
+        <h4>Detalhes de venda{{ veiculo.modelo }}</h4>
+    </div>
+    <div class="card-body">
+        <p><strong>Marca:</strong> {{ venda.veiculo.marca }}</p>
+        <p><strong>Modelo:</strong> {{ venda.veiculo.modelo }}</p>
+        <p><strong>Ano:</strong> {{ venda.veiculo.ano }}</p>
+        <p><strong>Cliente:</strong> {{ venda.cliente.nome }}</p>
+        <p><strong>Funcionário:</strong> {{ venda.funcionario.nome }}</p>
+        <p><strong>Data da Venda:</strong> {{ venda.data }}</p>
+        <p><strong>Valor:</strong> R$ {{ venda.valor }}</p>
+        <a href="{% url 'lista_vendas' %}" class="btn btn-secondary">Voltar</a>
+    </div>
+</div>
+{% endblock %}

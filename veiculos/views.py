@@ -27,3 +27,7 @@ def editar_veiculo(request, id):
 def deletar_veiculo(request, id):
     Veiculo.objects.filter(id=id).delete()
     return redirect('/veiculos/')
+
+def detalhes_veiculo(request, id):
+    veiculo = get_object_or_404(Veiculo, id=id)
+    return render(request, 'veiculos\detalhes_veiculo.html', {'veiculo': veiculo})

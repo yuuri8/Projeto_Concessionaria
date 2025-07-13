@@ -9,9 +9,8 @@
         <tr>
             <th>Veículo</th>
             <th>Cliente</th>
-            <th>Funcionário</th>
             <th>Data</th>
-            <th>Valor</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -19,9 +18,15 @@
         <tr>
             <td>{{ venda.veiculo }}</td>
             <td>{{ venda.cliente }}</td>
-            <td>{{ venda.funcionario }}</td>
             <td>{{ venda.data }}</td>
-            <td>R$ {{ venda.valor }}</td>
+        
+         <td >
+                <div>
+                    <a href="/vendas/detalhes/{{ venda.id }}/" class="btn btn-sm btn-info">Detalhes</a>
+                    <a href="/vendas/editar/{{ venda.id }}/" class="btn btn-sm btn-primary">Editar</a>
+                    <a href="/vendas/deletar/{{ venda.id }}/" class="btn btn-sm btn-danger">Excluir</a>
+                </div>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
