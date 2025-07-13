@@ -2,7 +2,7 @@
 {% block content %}
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Vendas</h2>
-    <a href="/vendas/nova/" class="btn btn-primary"> Nova Venda</a>
+    <a href="/vendas/nova/" class="btn btn-sm btn-dark"> Nova Venda</a>
 </div>
 <table class="table table-striped">
     <thead>
@@ -18,14 +18,11 @@
         <tr>
             <td>{{ venda.veiculo }}</td>
             <td>{{ venda.cliente }}</td>
-            <td>{{ venda.data }}</td>
-        
-         <td >
-                <div>
-                    <a href="/vendas/detalhes/{{ venda.id }}/" class="btn btn-sm btn-info">Detalhes</a>
-                    <a href="/vendas/editar/{{ venda.id }}/" class="btn btn-sm btn-primary">Editar</a>
-                    <a href="/vendas/deletar/{{ venda.id }}/" class="btn btn-sm btn-danger">Excluir</a>
-                </div>
+            <td>{{ venda.data|date:"d/m/Y" }}</td>
+            <td>
+                <a href="/vendas/detalhes/{{ venda.id }}/" class="btn btn-sm btn-dark">Detalhes</a>
+                <a href="/vendas/editar/{{ venda.id }}/" class="btn btn-sm btn-dark">Editar</a>
+                <a href="/vendas/deletar/{{ venda.id }}/" class="btn btn-sm btn-dark">Excluir</a>
             </td>
         </tr>
         {% endfor %}

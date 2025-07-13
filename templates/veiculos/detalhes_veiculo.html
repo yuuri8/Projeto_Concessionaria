@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="card mt-4">
-    <div class="card-header bg-info text-white">
+    <div class="card-header bg-dark text-white">
         <h4>Detalhes de {{ veiculo.modelo }}</h4>
     </div>
     <div class="card-body">
@@ -13,7 +13,7 @@
         <p><strong>Preço:</strong> R$ {{ veiculo.preco }}</p>
         <p><strong>Status:</strong> {% if veiculo.disponivel %} Disponível {% else %} Vendido {% endif %}</p>
 
-        <a href="{% url 'lista_veiculos' %}" class="btn btn-secondary">Voltar</a>
+        <a href="{% url 'lista_veiculos' %}" class="btn btn-dark">Voltar</a>
     </div>
 </div>
 {% endblock %}
