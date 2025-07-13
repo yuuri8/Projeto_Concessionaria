@@ -4,11 +4,12 @@ from clientes.models import Cliente
 from funcionarios.models import Funcionario
 from vendas.models import Venda
 from testdrive.models import TestDrive
-
 from django.db.models import Count, Sum
 from django.db.models.functions import TruncMonth
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def dashboard(request):
     total_veiculos = Veiculo.objects.count()
     veiculos_disponiveis = Veiculo.objects.filter(disponivel=True).count()

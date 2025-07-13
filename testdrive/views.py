@@ -5,11 +5,14 @@ from .forms import TestDriveForm
 from clientes.models import Cliente
 from veiculos.models import Veiculo
 from funcionarios.models import Funcionario
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def listar_testdrives(request):
     testdrive = TestDrive.objects.all()
     return render(request, 'testdrive/testdrive_lista.html', {'testdrive': testdrive})
 
+@login_required
 def criar_testdrive(request):
     if request.method == 'POST':
         form = TestDriveForm(request.POST)
@@ -27,6 +30,7 @@ def criar_testdrive(request):
     }
     return render(request, 'testdrive/testdrive_form.html', context)
 
+@login_required
 def editar_testdrive(request, testdrive_id):
     testdrive = get_object_or_404(TestDrive, id=testdrive_id)
 
@@ -47,12 +51,13 @@ def editar_testdrive(request, testdrive_id):
     }
     return render(request, 'testdrive/testdrive_form.html', context)
 
-
+@login_required
 def deletar_testdrive(request, testdrive_id):
     testdrive = get_object_or_404(TestDrive, id=testdrive_id)
     testdrive.delete()
     return redirect('listar_testdrives')
 
+@login_required
 def detalhes_testdrive(request, testdrive_id):
     testdrive = get_object_or_404(TestDrive, id=testdrive_id)
     return render(request, 'testdrive/testdrive_detalhe.html', {'testdrive': testdrive})

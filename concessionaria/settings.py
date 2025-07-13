@@ -147,9 +147,10 @@ TEMPLATES = [
 },
 ]
 
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_URL = 'login'  # Nome da URL de login
+LOGIN_REDIRECT_URL = 'dashboard'  # Redirecionamento após login bem-sucedido
+LOGOUT_REDIRECT_URL = 'login'  # Após logout
+
 
 
 #STATIC_URL = '/static/'
