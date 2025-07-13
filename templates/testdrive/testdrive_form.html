@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Font Awesome para ícones -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 <div class="container mt-5">
@@ -12,7 +11,11 @@
                     <div class="card-header text-black">
                         <h2 class="mb-0 d-flex align-items-center fs-5">
                             <i class="fas fa-calendar-check me-2 fs-5"></i>
-                            Agendar Test-Drive
+                            {% if testdrive %}
+                                Editar Test-Drive
+                            {% else %}
+                                Agendar Test-Drive
+                            {% endif %}
                         </h2>
                     </div>
 
@@ -25,9 +28,11 @@
                                 <i class="fas fa-user me-1"></i> Cliente
                             </label>
                             <select name="cliente" id="cliente" class="form-select" required>
-                                <option value="" disabled selected>Selecione o cliente</option>
+                                <option value="" disabled {% if not testdrive %}selected{% endif %}>Selecione o cliente</option>
                                 {% for cliente in clientes %}
-                                    <option value="{{ cliente.id }}">{{ cliente.nome }}</option>
+                                    <option value="{{ cliente.id }}" {% if testdrive and cliente.id == testdrive.cliente.id %}selected{% endif %}>
+                                        {{ cliente.nome }}
+                                    </option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -38,9 +43,11 @@
                                 <i class="fas fa-car-side me-1"></i> Veículo
                             </label>
                             <select name="veiculo" id="veiculo" class="form-select" required>
-                                <option value="" disabled selected>Selecione o veículo</option>
+                                <option value="" disabled {% if not testdrive %}selected{% endif %}>Selecione o veículo</option>
                                 {% for veiculo in veiculos %}
-                                    <option value="{{ veiculo.id }}">{{ veiculo.modelo }}</option>
+                                    <option value="{{ veiculo.id }}" {% if testdrive and veiculo.id == testdrive.veiculo.id %}selected{% endif %}>
+                                        {{ veiculo.modelo }}
+                                    </option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -51,9 +58,11 @@
                                 <i class="fas fa-user-tie me-1"></i> Funcionário
                             </label>
                             <select name="funcionario" id="funcionario" class="form-select" required>
-                                <option value="" disabled selected>Selecione o funcionário</option>
+                                <option value="" disabled {% if not testdrive %}selected{% endif %}>Selecione o funcionário</option>
                                 {% for funcionario in funcionarios %}
-                                    <option value="{{ funcionario.id }}">{{ funcionario.nome }}</option>
+                                    <option value="{{ funcionario.id }}" {% if testdrive and funcionario.id == testdrive.funcionario.id %}selected{% endif %}>
+                                        {{ funcionario.nome }}
+                                    </option>
                                 {% endfor %}
                             </select>
                         </div>
@@ -63,7 +72,8 @@
                             <label for="data_hora" class="form-label">
                                 <i class="fas fa-clock me-1"></i> Data e Hora
                             </label>
-                            <input type="datetime-local" name="data_hora" id="data_hora" class="form-control" required>
+                            <input type="datetime-local" name="data_hora" id="data_hora" class="form-control" required
+                                value="{% if testdrive %}{{ testdrive.data_hora|date:'Y-m-d\\TH:i' }}{% endif %}">
                         </div>
 
                         <!-- Status -->
@@ -72,17 +82,24 @@
                                 <i class="fas fa-tasks me-1"></i> Status
                             </label>
                             <select name="status" id="status" class="form-select" required>
-                                <option value="" disabled selected>Selecione o status</option>
-                                <option value="pendente">Pendente</option>
-                                <option value="confirmado">Confirmado</option>
-                                <option value="realizado">Realizado</option>
+                                <option value="" disabled {% if not testdrive %}selected{% endif %}>Selecione o status</option>
+                                <option value="pendente" {% if testdrive and testdrive.status == 'pendente' %}selected{% endif %}>Pendente</option>
+                                <option value="confirmado" {% if testdrive and testdrive.status == 'confirmado' %}selected{% endif %}>Confirmado</option>
+                                <option value="realizado" {% if testdrive and testdrive.status == 'realizado' %}selected{% endif %}>Realizado</option>
+                                <option value="cancelado" {% if testdrive and testdrive.status == 'cancelado' %}selected{% endif %}>Cancelado</option>
+
                             </select>
                         </div>
 
                         <!-- Botões -->
                         <div class="d-flex justify-content-between">
                             <button type="submit" class="btn btn-success w-50 me-2">
-                                <i class="fas fa-check"></i> Agendar
+                                <i class="fas fa-check"></i>
+                                {% if testdrive %}
+                                    Salvar Alterações
+                                {% else %}
+                                    Agendar
+                                {% endif %}
                             </button>
                             <a href="/test-drives/" class="btn btn-secondary w-50">
                                 <i class="fas fa-times"></i> Cancelar

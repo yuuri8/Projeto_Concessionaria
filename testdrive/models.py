@@ -9,4 +9,4 @@ class TestDrive(models.Model):
     veiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
     funcionario = models.ForeignKey(Funcionario, on_delete=models.CASCADE)
     data_hora = models.DateTimeField()
-    status = models.CharField(max_length=20, choices=[('pendente', 'Pendente'), ('realizado', 'Realizado')])
+    status = models.CharField(max_length=20, choices=[('pendente', 'Pendente'), ('confirmado', 'Confirmado'), ('realizado', 'Realizado'), ('cancelado', 'Cancelado')])

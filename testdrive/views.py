@@ -15,7 +15,7 @@ def criar_testdrive(request):
         form = TestDriveForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/test-drives/')
+            return redirect('listar_testdrives')
     else:
         form = TestDriveForm()
 
@@ -25,18 +25,28 @@ def criar_testdrive(request):
         'veiculos': Veiculo.objects.all(),
         'funcionarios': Funcionario.objects.all()
     }
-    return render(request, 'testdrive/testdrive_form.html', {'form': form})
+    return render(request, 'testdrive/testdrive_form.html', context)
 
 def editar_testdrive(request, testdrive_id):
     testdrive = get_object_or_404(TestDrive, id=testdrive_id)
+
     if request.method == 'POST':
-        form =TestDriveForm(request.POST, instance=testdrive)
+        form = TestDriveForm(request.POST, instance=testdrive)
         if form.is_valid():
             form.save()
             return redirect('listar_testdrives')
     else:
         form = TestDriveForm(instance=testdrive)
-    return render(request, 'testdrive/testdrive_form.html', {'form': form, 'testdrive': testdrive})
+
+    context = {
+        'form': form,
+        'testdrive': testdrive,
+        'clientes': Cliente.objects.all(),
+        'veiculos': Veiculo.objects.all(),
+        'funcionarios': Funcionario.objects.all()
+    }
+    return render(request, 'testdrive/testdrive_form.html', context)
+
 
 def deletar_testdrive(request, testdrive_id):
     testdrive = get_object_or_404(TestDrive, id=testdrive_id)

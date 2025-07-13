@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Detalhes do TestDrive{% endblock %}
+
+{% block content %}
+<div class="card mt-4">
+    <div class="card-header bg-dark text-white">
+        <h4>Detalhes do Test Drive de {{ testdrive.cliente }}</h4>
+    </div>
+    <div class="card-body">
+        <p><strong>Cliente:</strong> {{ testdrive.cliente }}</p>
+        <p><strong>Veículo:</strong> {{ testdrive.veiculo }}</p>
+        <p><strong>Funcionário:</strong> {{ testdrive.funcionario }}</p>
+        <p><strong>Data:</strong> {{ testdrive.data_hora|date:"d/m/Y  H:i" }}</p>
+        <p><strong>Status:</strong> {% if testdrive.status == 'pendente' %} Pendente {% elif testdrive.status == 'confirmado' %} Confirmado {% elif testdrive.status == 'realizado' %} Realizado {% else %} Cancelado {% endif %} </p>
+
+        <a href="{% url 'listar_testdrives' %}" class="btn btn-dark">Voltar</a>
+    </div>
+</div>
+{% endblock %}
