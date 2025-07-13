@@ -32,7 +32,7 @@
                 <div>
                     <a href="{% url 'detalhes_testdrive' testdrive.id %}" class="btn btn-sm btn-dark">Detalhes</a>
                     <a href="{% url 'editar_testdrive' testdrive.id %}" class="btn btn-sm btn-dark">Editar</a>
-                    <a href="{% url 'deletar_testdrive' testdrive.id %}" class="btn btn-sm btn-dark">Excluir</a>
+                    <a href="{% url 'deletar_testdrive' testdrive.id %}" class="btn btn-sm btn-dark" onclick="return confirm('Tem certeza que deseja excluir este test drive?')">Excluir</a>
                 </div>
             </td>
         </tr>
