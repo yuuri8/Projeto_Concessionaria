@@ -10,7 +10,7 @@
             <th>Veículo</th>
             <th>Cliente</th>
             <th>Data</th>
-            <th>Ações</th>
+            <th class="text-end">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -19,7 +19,7 @@
             <td>{{ venda.veiculo }}</td>
             <td>{{ venda.cliente }}</td>
             <td>{{ venda.data|date:"d/m/Y" }}</td>
-            <td>
+            <td class="text-end">
                 <a href="/vendas/detalhes/{{ venda.id }}/" class="btn btn-sm btn-dark">Detalhes</a>
                 <a href="/vendas/editar/{{ venda.id }}/" class="btn btn-sm btn-dark">Editar</a>
                 <a href="/vendas/deletar/{{ venda.id }}/" class="btn btn-sm btn-dark">Excluir</a>
