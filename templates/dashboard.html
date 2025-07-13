@@ -1,29 +1,92 @@
 {% extends 'base.html' %}
+
 {% block content %}
+<h2 class="mb-4">Dashboard</h2>
 <div class="row">
-    <div class="col-md-3">
-        <div class="card text-white bg-primary mb-3">
+    <div class="col-md-3 mb-3">
+        <div class="card text-bg-primary shadow">
             <div class="card-body">
-                <h5 class="card-title">Total de Veículos</h5>
-                <p class="card-text">{{ total_veiculos }}</p>
+                <h5 class="card-title">Veículos</h5>
+                <p class="card-text display-6">{{ total_veiculos }}</p>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-success mb-3">
+    <div class="col-md-3 mb-3">
+        <div class="card text-bg-success shadow">
             <div class="card-body">
-                <h5 class="card-title">Total de Vendas</h5>
-                <p class="card-text">{{ total_vendas }}</p>
+                <h5 class="card-title">Disponíveis</h5>
+                <p class="card-text display-6">{{ veiculos_disponiveis }}</p>
             </div>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="card text-white bg-warning mb-3">
+    <div class="col-md-3 mb-3">
+        <div class="card text-bg-danger shadow">
             <div class="card-body">
-                <h5 class="card-title">Test-Drives Hoje</h5>
-                <p class="card-text">{{ test_drives_hoje }}</p>
+                <h5 class="card-title">Vendidos</h5>
+                <p class="card-text display-6">{{ veiculos_vendidos }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-bg-warning shadow">
+            <div class="card-body">
+                <h5 class="card-title">Clientes</h5>
+                <p class="card-text display-6">{{ total_clientes }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-bg-secondary shadow">
+            <div class="card-body">
+                <h5 class="card-title">Test Drives Pendentes</h5>
+                <p class="card-text display-6">{{ testdrives_pendentes }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card text-bg-info shadow">
+            <div class="card-body">
+                <h5 class="card-title">Test Drives Realizados</h5>
+                <p class="card-text display-6">{{ testdrives_realizados }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="card text-bg-dark shadow">
+            <div class="card-body">
+                <h5 class="card-title">Total em Vendas</h5>
+                <p class="card-text display-6">R$ {{ total_vendas|floatformat:2 }}</p>
             </div>
         </div>
     </div>
 </div>
+<hr class="my-5">
+<h4 class="mb-3">Vendas por Mês</h4>
+<canvas id="graficoVendas" height="100"></canvas>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('graficoVendas').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ grafico_labels|safe }},
+            datasets: [{
+                label: 'Vendas',
+                data: {{ grafico_dados|safe }},
+                backgroundColor: 'rgba(13, 110, 253, 0.7)',
+                borderColor: 'rgba(13, 110, 253, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
 {% endblock %}
