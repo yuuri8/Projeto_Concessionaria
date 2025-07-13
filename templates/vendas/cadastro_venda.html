@@ -1,10 +1,85 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<h2>Registrar Venda</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Salvar</button>
-    <a href="/vendas/" class="btn btn-secondary">Cancelar</a>
-</form>
+<!-- Font Awesome para ícones -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow-lg rounded">
+                <div class="card-body">
+                    <div class="card-header text-black">
+                        <h2 class="mb-0 d-flex align-items-center fs-5">
+                            <i class="fas fa-shopping-cart me-2 fs-5"></i>
+                            Registrar Venda
+                        </h2>
+                    </div>
+
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <!-- Cliente -->
+                        <div class="mb-3">
+                            <label for="id_cliente" class="form-label">
+                                <i class="fas fa-user me-1"></i> Cliente
+                            </label>
+                            <select name="cliente" id="id_cliente" class="form-select" required>
+                                <option value="" disabled selected>Selecione o cliente</option>
+                                {% for cliente in form.fields.cliente.queryset %}
+                                    <option value="{{ cliente.id }}">{{ cliente }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Veículo -->
+                        <div class="mb-3">
+                            <label for="id_veiculo" class="form-label">
+                                <i class="fas fa-car-side me-1"></i> Veículo
+                            </label>
+                            <select name="veiculo" id="id_veiculo" class="form-select" required>
+                                <option value="" disabled selected>Selecione o veículo</option>
+                                {% for veiculo in form.fields.veiculo.queryset %}
+                                    <option value="{{ veiculo.id }}">{{ veiculo }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Funcionário -->
+                        <div class="mb-3">
+                            <label for="id_funcionario" class="form-label">
+                                <i class="fas fa-user-tie me-1"></i> Funcionário
+                            </label>
+                            <select name="funcionario" id="id_funcionario" class="form-select" required>
+                                <option value="" disabled selected>Selecione o funcionário</option>
+                                {% for funcionario in form.fields.funcionario.queryset %}
+                                    <option value="{{ funcionario.id }}">{{ funcionario }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <!-- Valor -->
+                        <div class="mb-3">
+                            <label for="id_valor" class="form-label">
+                                <i class="fas fa-dollar-sign me-1"></i> Valor
+                            </label>
+                            <input type="number" step="0.01" name="valor" id="id_valor"
+                                   class="form-control" placeholder="Digite o valor da venda" required>
+                        </div>
+
+                        <!-- Botões -->
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="submit" class="btn btn-success w-50 me-2">
+                                <i class="fas fa-save"></i> Salvar
+                            </button>
+                            <a href="/vendas/" class="btn btn-secondary w-50">
+                                <i class="fas fa-times"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
