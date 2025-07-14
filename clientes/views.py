@@ -3,7 +3,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Cliente
 from .forms import ClienteForm
 from django.contrib.auth.decorators import login_required
-
+from django.db.models import ProtectedError
+from django.contrib import messages
 
 @login_required
 def lista_clientes(request):
@@ -35,7 +36,11 @@ def editar_cliente(request, cliente_id):
 @login_required
 def deletar_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, id=cliente_id)
-    cliente.delete()
+    try:
+        cliente.delete()
+        messages.success(request, 'Cliente deletado com sucesso.')
+    except ProtectedError:
+        messages.error(request, 'Não é possível excluir este cliente pois ele possui vendas associadas.')
     return redirect('listar_clientes')
 
 @login_required
