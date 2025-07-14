@@ -1,11 +1,20 @@
-from django.contrib.auth.views import LoginView
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
-from django.urls import reverse_lazy
+from django.urls import reverse
 
-class MeuLoginView(LoginView):
-    template_name = 'login.html'  # Caminho para seu template
-    authentication_form = AuthenticationForm
-    redirect_authenticated_user = True  # Se o usuário já estiver logado, redireciona
+def login_usuario(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')  # já logado
 
-    def get_success_url(self):
-        return reverse_lazy('dashboard')  # Substitua 'dashboard' pela sua URL pós-login
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            usuario = form.get_user()
+            login(request, usuario)
+            return redirect('dashboard')
+    else:
+        form = AuthenticationForm()
+
+    return render(request, 'login.html', {'form': form})
+
