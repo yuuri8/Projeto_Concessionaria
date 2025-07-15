@@ -1,4 +1,4 @@
-````markdown
+```markdown
 # 🚗 Sistema de Gestão de Concessionária
 
 Desenvolvido por: [Yuri Lima](https://github.com/yuuri8), [Samuel Henrique](https://github.com/SamuelHenrique007)
@@ -13,7 +13,7 @@ Certifique-se de que o Python está instalado na sua máquina:
 
 ```bash
 python --version
-````
+```
 
 ---
 
@@ -39,16 +39,6 @@ venv\Scripts\activate
 
 ```bash
 source venv/bin/activate
-```
-
----
-
-## 📦 Instalar as dependências
-
-Com o ambiente virtual ativado, instale os pacotes necessários:
-
-```bash
-pip install -r requirements.txt
 ```
 
 ---
@@ -89,6 +79,8 @@ Acesse o sistema pelo navegador no endereço:
 ```
 http://127.0.0.1:8000/
 ```
+⚠️ Atenção: o login no sistema só poderá ser feito com o usuário e senha do superusuário que você criou anteriormente.
+
 
 ---
 

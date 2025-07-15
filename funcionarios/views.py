@@ -45,7 +45,6 @@ def criar_funcionario(request):
             permissao=permissao
         )
 
-        messages.success(request, "Funcionário criado com sucesso!")
         return redirect('listar_funcionarios')
 
     return render(request, 'funcionarios/funcionarios_form.html', {})
@@ -66,7 +65,9 @@ def editar_funcionario(request, funcionario_id):
 @login_required
 def deletar_funcionario(request, funcionario_id):
     funcionario = get_object_or_404(Funcionario, id=funcionario_id)
+    usuario = funcionario.usuario
     funcionario.delete()
+    usuario.delete()
     return redirect('listar_funcionarios')
 
 @login_required
