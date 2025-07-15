@@ -9,7 +9,7 @@ from veiculos.decorators import permissao_requerida
 # Create your views here.
 @login_required
 def lista_veiculos(request):
-    return render(request, 'veiculos\lista_veiculos.html', {'veiculos': Veiculo.objects.all()})
+    return render(request, 'veiculos/lista_veiculos.html', {'veiculos': Veiculo.objects.all()})
 
 @login_required
 def novo_veiculo(request):
@@ -17,7 +17,7 @@ def novo_veiculo(request):
     if form.is_valid():
         form.save()
         return redirect('/veiculos/')
-    return render(request, 'veiculos\cadastro_veiculo.html', {'form': form, 'titulo': 'Novo Veículo'})
+    return render(request, 'veiculos/cadastro_veiculo.html', {'form': form, 'titulo': 'Novo Veículo'})
 
 @login_required
 def editar_veiculo(request, id):
@@ -26,7 +26,7 @@ def editar_veiculo(request, id):
     if form.is_valid():
         form.save()
         return redirect('/veiculos/')
-    return render(request, 'veiculos\cadastro_veiculo.html', {'form': form, 'titulo': 'Editar Veículo'})
+    return render(request, 'veiculos/cadastro_veiculo.html', {'form': form, 'titulo': 'Editar Veículo'})
 
 @login_required
 @permissao_requerida('admin')
@@ -37,4 +37,4 @@ def deletar_veiculo(request, id):
 @login_required
 def detalhes_veiculo(request, id):
     veiculo = get_object_or_404(Veiculo, id=id)
-    return render(request, 'veiculos\detalhes_veiculo.html', {'veiculo': veiculo})
+    return render(request, 'veiculos/detalhes_veiculo.html', {'veiculo': veiculo})
