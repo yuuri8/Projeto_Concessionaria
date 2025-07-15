@@ -42,6 +42,15 @@ source venv/bin/activate
 
 ---
 
+## 📦 Instalar as dependências
+
+Com o ambiente virtual ativado, instale todas as dependências listadas no arquivo requirements.txt:
+
+```bash
+    pip install -r requirements.txt 
+ ```
+---
+
 ## ⚙️ Configurar o banco de dados
 
 Crie as tabelas com os comandos abaixo:
@@ -97,5 +106,5 @@ http://127.0.0.1:8000/
 
 ## 🎥 Demonstração em vídeo
 
-*(Adicione aqui o link do vídeo, se houver)*
+[*(Adicione aqui o link do vídeo, se houver)*](https://youtu.be/xHPGK1MjmTI?si=z3AJnK1DaYpcGdUQ)
 
