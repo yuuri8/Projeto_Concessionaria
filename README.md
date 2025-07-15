@@ -106,5 +106,4 @@ http://127.0.0.1:8000/
 
 ## 🎥 Demonstração em vídeo
 
-[*(Adicione aqui o link do vídeo, se houver)*](https://youtu.be/xHPGK1MjmTI?si=z3AJnK1DaYpcGdUQ)
-
+Uma demonstração do sistema em funcionamento está disponível no [YouTube](https://youtu.be/xHPGK1MjmTI?si=bY3Ig4MXEYPxEhPt).
