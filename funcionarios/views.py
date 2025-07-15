@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Funcionario
 from .forms import FuncionarioForm
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
 from .decorators import permissao_requerida
-
+from django.db.models import ProtectedError
 
 @login_required
 def home(request):
@@ -66,8 +65,12 @@ def editar_funcionario(request, funcionario_id):
 def deletar_funcionario(request, funcionario_id):
     funcionario = get_object_or_404(Funcionario, id=funcionario_id)
     usuario = funcionario.usuario
-    funcionario.delete()
-    usuario.delete()
+    try:
+        funcionario.delete()
+        usuario.delete()
+        messages.success(request, 'Funcionário deletado com sucesso.')
+    except ProtectedError:
+        messages.error(request, 'Não é possível excluir este funcionário pois ele possui vendas associadas.')
     return redirect('listar_funcionarios')
 
 @login_required

@@ -22,7 +22,7 @@
             <td class="text-end">
                 <a href="/vendas/detalhes/{{ venda.id }}/" class="btn btn-sm btn-dark">Detalhes</a>
                 <a href="/vendas/editar/{{ venda.id }}/" class="btn btn-sm btn-dark">Editar</a>
-                <a href="/vendas/deletar/{{ venda.id }}/" class="btn btn-sm btn-dark">Excluir</a>
+                <a href="/vendas/deletar/{{ venda.id }}/" class="btn btn-sm btn-dark" onclick="return confirm('Tem certeza que deseja excluir esta venda do sistema?')">Excluir</a>
             </td>
         </tr>
         {% endfor %}

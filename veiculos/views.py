@@ -4,6 +4,8 @@ from .models import Veiculo
 from .forms import VeiculoForm
 from django.contrib.auth.decorators import login_required
 from veiculos.decorators import permissao_requerida
+from django.db.models import ProtectedError
+from django.contrib import messages
 
 
 # Create your views here.
@@ -31,7 +33,11 @@ def editar_veiculo(request, id):
 @login_required
 @permissao_requerida('admin')
 def deletar_veiculo(request, id):
-    Veiculo.objects.filter(id=id).delete()
+    try:
+        Veiculo.objects.filter(id=id).delete()
+        messages.success(request, 'Veículo deletado com sucesso.')
+    except ProtectedError:
+        messages.error(request, 'Não é possível excluir este veículo pois ele está associado a uma venda.')
     return redirect('/veiculos/')
 
 @login_required

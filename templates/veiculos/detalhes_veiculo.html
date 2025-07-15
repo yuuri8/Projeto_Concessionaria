@@ -11,6 +11,7 @@
         <p><strong>Modelo:</strong> {{ veiculo.modelo }}</p>
         <p><strong>Ano:</strong> {{ veiculo.ano }}</p>
         <p><strong>Preço:</strong> R$ {{ veiculo.preco }}</p>
+        <p><strong>Quilometragem:</strong> Km {{ veiculo.quilometragem }}</p>
         <p><strong>Status:</strong> {% if veiculo.disponivel %} Disponível {% else %} Vendido {% endif %}</p>
 
         <a href="{% url 'lista_veiculos' %}" class="btn btn-dark">Voltar</a>
