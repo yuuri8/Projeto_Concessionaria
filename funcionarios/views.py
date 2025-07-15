@@ -6,13 +6,15 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import permission_required
-from functools import wraps
+from .decorators import permissao_requerida
+
 
 @login_required
 def home(request):
     return render(request, 'dashboard.html')
 
 @login_required
+@permissao_requerida('admin')
 def listar_funcionarios(request):
     funcionarios = Funcionario.objects.all()
     return render(request, 'funcionarios/funcionarios_lista.html', {'funcionarios': funcionarios})

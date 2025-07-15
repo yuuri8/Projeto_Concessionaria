@@ -6,6 +6,7 @@ from clientes.models import Cliente
 from veiculos.models import Veiculo
 from funcionarios.models import Funcionario
 from django.contrib.auth.decorators import login_required
+from testdrive.decorators import permissao_requerida
 
 @login_required
 def listar_testdrives(request):
@@ -52,6 +53,7 @@ def editar_testdrive(request, testdrive_id):
     return render(request, 'testdrive/testdrive_form.html', context)
 
 @login_required
+@permissao_requerida('admin')
 def deletar_testdrive(request, testdrive_id):
     testdrive = get_object_or_404(TestDrive, id=testdrive_id)
     testdrive.delete()

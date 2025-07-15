@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Veiculo
 from .forms import VeiculoForm
 from django.contrib.auth.decorators import login_required
+from veiculos.decorators import permissao_requerida
 
 
 # Create your views here.
@@ -28,6 +29,7 @@ def editar_veiculo(request, id):
     return render(request, 'veiculos\cadastro_veiculo.html', {'form': form, 'titulo': 'Editar Veículo'})
 
 @login_required
+@permissao_requerida('admin')
 def deletar_veiculo(request, id):
     Veiculo.objects.filter(id=id).delete()
     return redirect('/veiculos/')

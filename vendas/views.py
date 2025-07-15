@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Venda
 from .forms import VendaForm
 from django.contrib.auth.decorators import login_required
+from .decorators import permissao_requerida
+
 
 @login_required
 def lista_vendas(request):
@@ -33,6 +35,7 @@ def detalhes_venda(request, id):
     return render(request, 'vendas/detalhes_venda.html', {'venda': venda})
 
 @login_required
+@permissao_requerida('admin')
 def deletar_venda(request, id):
     Venda.objects.filter(id=id).delete()
     return redirect('/vendas/')

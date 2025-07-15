@@ -5,6 +5,7 @@ from .forms import ClienteForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import ProtectedError
 from django.contrib import messages
+from clientes.decorators import permissao_requerida
 
 @login_required
 def lista_clientes(request):
@@ -34,6 +35,7 @@ def editar_cliente(request, cliente_id):
     return render(request, 'clientes/clientes_form.html', {'form': form, 'cliente': cliente})
 
 @login_required
+@permissao_requerida('admin')
 def deletar_cliente(request, cliente_id):
     cliente = get_object_or_404(Cliente, id=cliente_id)
     try:
