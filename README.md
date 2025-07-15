@@ -1,5 +1,4 @@
-```markdown
-# 🚗 Sistema de Gestão de Concessionária
+## 🚗 Sistema de Gestão de Concessionária
 
 Desenvolvido por: [Yuri Lima](https://github.com/yuuri8), [Samuel Henrique](https://github.com/SamuelHenrique007)
 
